@@ -9,10 +9,10 @@
 
             AFRAME.registerComponent('ruler-manager', {
                 tick: function () {
-                    var firstMarker = document.getElementById("first");
-                    var secondMarker = document.getElementById("second");
+                    var markerA = document.getElementById("marker-a");
+                    var markerB = document.getElementById("marker-b");
 
-                    var distance = firstMarker.object3D.position.distanceTo(secondMarker.object3D.position);
+                    var distance = markerA.object3D.position.distanceTo(markerB.object3D.position);
                     distance *= SCALE_FACTOR;
                     console.log(distance);
 
@@ -20,21 +20,21 @@
                     distanceLabel.setAttribute("value", distance.toFixed(1));
 
                     var camera = document.getElementById("camera");
-                    distanceLabel.object3D.lookAt(camera.object3D.position);
+                    distanceLabel.object3D.lookAt(camera.object3D.position); // Make the label face the camera all the time.
                 }
             });
         </script>
     </head>
     <body style="margin : 0px; overflow: hidden;">
         <a-scene embedded arjs>
-            <a-marker id="first" preset="hiro">
+            <a-marker id="marker-a" type="pattern" preset="custom" url="marker-a.patt">
                 <a-sphere color="red" radius="0.1"></a-sphere>
                 <a-text id="distance-label" position="0 1 0" scale = "1 1 1" align="center" value="Hello World"></a-text>
             </a-marker>
-            <a-marker id="second" preset="kanji">
+            <a-marker id="marker-b" type="pattern" preset="custom" url="marker-b.patt">
                 <a-sphere color="blue" radius="0.1"></a-sphere>
             </a-marker>
-            <a-entity id="camera" camera ruler-manager></a-entity>
+            <a-entity camera id="camera"></a-entity>
         </a-scene>
     </body>
 </html>
