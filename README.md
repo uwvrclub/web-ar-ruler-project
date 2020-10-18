@@ -333,7 +333,7 @@ Now that we have the HTML part down, let's make these entities come alive with s
 </html>
 ```
 
-In A-Frame, the way we define behaviours of entities is components. Here, we want to measure the distance between the two markers and show that to the text label. So, let's make a new custom component of our own called `ruler-component`. It will have a `tick` function that will be called every frame by A-Frame.
+In A-Frame, the way we define behaviours of entities is components. Here, we want to measure the distance between the two markers and show that to the text label. So, let's make a new custom component of our own called `ruler-component`. It will have a `tick` function that will be called every frame by A-Frame. This component can then be attached to our camera component.
 
 ```html
 <!DOCTYPE html>
@@ -351,8 +351,16 @@ In A-Frame, the way we define behaviours of entities is components. Here, we wan
         </script>
     </head>
     <body style="margin : 0px; overflow: hidden;">
-        <!-- Contents is omitted for now -->
-        ...
+        <a-scene embedded arjs>
+            <a-marker type="pattern" preset="custom" url="marker-a.patt">
+                <a-sphere color="red" radius="0.1"></a-sphere>
+                <a-text position="0 1 0" scale = "1 1 1" align="center" value="Hello World"></a-text>
+            </a-marker>
+            <a-marker type="pattern" preset="custom" url="marker-b.patt">
+                <a-sphere color="blue" radius="0.1"></a-sphere>
+            </a-marker>
+            <a-entity camera ruler-manager></a-entity> <!-- Added ruler-manager here -->
+        </a-scene>
     </body>
 </html>
 ```
@@ -383,7 +391,7 @@ Next, we want to calculated the distance between the two markers. To do that, we
             <a-marker id="marker-b" type="pattern" preset="custom" url="marker-b.patt"> <!-- ID here -->
                 <a-sphere color="blue" radius="0.1"></a-sphere>
             </a-marker>
-            <a-entity camera id="camera"></a-entity> <!-- ID here -->
+            <a-entity id="camera" camera ruler-manager></a-entity> <!-- ID here -->
         </a-scene>
     </body>
 </html>

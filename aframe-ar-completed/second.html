@@ -20,7 +20,7 @@
                     distanceLabel.setAttribute("value", distance.toFixed(1));
 
                     var camera = document.getElementById("camera");
-                    distanceLabel.object3D.lookAt(camera.object3D.position); // Make the label face the camera all the time.
+                    distanceLabel.object3D.lookAt(camera.object3D.position);
                 }
             });
         </script>
@@ -34,7 +34,7 @@
             <a-marker id="marker-b" type="pattern" preset="custom" url="marker-b.patt">
                 <a-sphere color="blue" radius="0.1"></a-sphere>
             </a-marker>
-            <a-entity camera id="camera"></a-entity>
+            <a-entity id="camera" camera ruler-manager></a-entity>
         </a-scene>
     </body>
 </html>
