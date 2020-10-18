@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+        <!-- we import arjs version without NFT but with marker + location based support -->
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script>
+            var SCALE_FACTOR = 7.9;
+
+            AFRAME.registerComponent('ruler-manager', {
+                tick: function () {
+                    var firstMarker = document.getElementById("first");
+                    var secondMarker = document.getElementById("second");
+
+                    var distance = firstMarker.object3D.position.distanceTo(secondMarker.object3D.position);
+                    distance *= SCALE_FACTOR;
+                    console.log(distance);
+
+                    var distanceLabel = document.getElementById("distance-label");
+                    distanceLabel.setAttribute("value", distance.toFixed(1));
+
+                    var camera = document.getElementById("camera");
+                    distanceLabel.object3D.lookAt(camera.object3D.position);
+                }
+            });
+        </script>
+    </head>
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene embedded arjs>
+            <a-marker id="first" preset="hiro">
+                <a-sphere color="red" radius="0.1"></a-sphere>
+                <a-text id="distance-label" position="0 1 0" scale = "1 1 1" align="center" value="Hello World"></a-text>
+            </a-marker>
+            <a-marker id="second" preset="kanji">
+                <a-sphere color="blue" radius="0.1"></a-sphere>
+            </a-marker>
+            <a-entity id="camera" camera ruler-manager></a-entity>
+        </a-scene>
+    </body>
+</html>
