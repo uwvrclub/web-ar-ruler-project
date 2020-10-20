@@ -536,6 +536,8 @@ Go back to [http://localhost:8000/second.html](http://localhost:8000/second.html
 
 Go back to [http://localhost:8000/second.html](http://localhost:8000/second.html), refresh, and play around with the markers. The label should face the camera, and it will be easier to check the distance now.
 
+Alternatively, you can check out the demo [here](./aframe-ar-completed/second.html)
+
 ### Conclusion
 
 Awesome!! You've created an AR ruler of your own. It was a long journey, but you've learned so much: the fundamentals of web programming, A-Frame and AR.js, and making A-Frame entities be interactable using JavaScript. There's so many more applications than an AR ruler, like a AR poster, or a marker-based WebAR map. Because your app will be on a web page, you will be able to reach out to so many more people than a traditional mobile AR app.
